@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Users</title>
+	<style>
+		body {
+			font-family: sans-serif;
+		}
+
+		label {
+			width: 7rem;
+			display: inline-block;
+			min-width: max-content;
+		}
+
+		form,
+		.list {
+			padding: 1rem;
+			border-radius: 1rem;
+			border: 2px solid black;
+			display: inline-block;
+		}
+
+		.list {
+			display: block;
+			margin-bottom: 2rem;
+		}
+
+		.form-column {
+			display: flex;
+			column-gap: 2rem;
+			row-gap: 2rem;
+			align-items: start;
+			justify-content: space-between;
+			flex-wrap: wrap;
+		}
+
+		.column {
+			display: flex;
+			flex-direction: column;
+			row-gap: 2rem;
+			justify-content: space-between;
+		}
+
+		.row_submit input {
+			width: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="list">
+		<th:block th:each="var : ${users}">
+			<h1 th:text="${var}"></h1>
+		</th:block>
+	</div>
+	<div class="form-column">
+		<form th:action="@{/admin}" method="post">
+			<div class="column">
+				<dif class="row">
+					<h3>Add a user:</h3>
+				</dif>
+				<div class="row">
+					<label for="name">Enter name:</label>
+					<input name="name" required type="text" id="name">
+				</div>
+				<div class="row">
+					<label for="name">Enter password:</label>
+					<input name="password" required type="text" id="name">
+				</div>
+				<div class="row">
+					<label for="role">Enter role:</label>
+					<input name="role" required type="text" id="role">
+				</div>
+				<div class="row row_submit">
+					<input type="submit" value="Commit">
+				</div>
+			</div>
+		</form>
+		<form th:action="@{/admin}" method="post">
+			<div class="column">
+				<div class="row">
+					<h3>Delete a user:</h3>
+				</div>
+				<div class="row">
+					<label for="id">Enter id:</label>
+					<input name="id" min="1" required type="number" id="id">
+				</div>
+				<div class="row row_submit">
+					<input type="submit" value="Commit">
+				</div>
+			</div>
+		</form>
+		<form th:action="@{/admin}" th:object="${user}" method="post">
+			<div class="column">
+				<div class="row">
+					<h3>Change the user:</h3>
+				</div>
+				<div class="row">
+					<label for="id">Enter id:</label>
+					<input min="1" name="id" required type="number" id="id">
+				</div>
+				<div class="row">
+					<label for="name">Enter name:</label>
+					<input name="name" required type="text" id="name">
+				</div>
+				<div class="row">
+					<label for="password">Enter password:</label>
+					<input name="password" required type="number" id="password">
+				</div>
+				<div class="row">
+					<label for="role">Enter role:</label>
+					<input name="role" required type="text" id="role">
+				</div>
+				<div class="row row_submit">
+					<input type="submit" value="Commit">
+				</div>
+			</div>
+		</form>
+	</div>
+	<button>
+		<a th:href="@{/logout}">Logout</a>
+	</button>
+</body>
+
+</html>
