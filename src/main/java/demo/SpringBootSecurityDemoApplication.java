@@ -21,6 +21,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
@@ -40,6 +41,13 @@ public class SpringBootSecurityDemoApplication implements WebMvcConfigurer {
 	@Autowired
 	@Lazy
 	private UserDAO dao;
+
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry
+				.addResourceHandler("/js/**")
+				.addResourceLocations("classpath:/static/js/");
+	}
 
 	@Bean
 	public DataSource dataSource() {
@@ -86,7 +94,6 @@ public class SpringBootSecurityDemoApplication implements WebMvcConfigurer {
 		templateResolver.setPrefix("templates/");
 		templateResolver.setCacheable(false);
 		templateResolver.setSuffix(".html");
-		templateResolver.setTemplateMode("HTML");
 		templateResolver.setCharacterEncoding("UTF-8");
 
 		return templateResolver;

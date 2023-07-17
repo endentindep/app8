@@ -22,13 +22,12 @@
 <body>
 	<h1>User, welcome spring boot security page!</h1>
 	<div class="list">
-		<th:block th:each="var : ${user}">
-			<h1 th:text="${var}"></h1>
-		</th:block>
+		<h1></h1>
 	</div>
 	<button>
 		<a th:href="@{/logout}">Logout</a>
 	</button>
+	<script th:src="@{/js/user.js}"></script>
 </body>
 
 </html>

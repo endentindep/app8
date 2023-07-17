@@ -53,12 +53,10 @@
 
 <body>
 	<div class="list">
-		<th:block th:each="var : ${users}">
-			<h1 th:text="${var}"></h1>
-		</th:block>
+		<h1></h1>
 	</div>
 	<div class="form-column">
-		<form th:action="@{/admin}" method="post">
+		<form class="one" th:action="@{/admin}" method="post">
 			<div class="column">
 				<dif class="row">
 					<h3>Add a user:</h3>
@@ -68,8 +66,8 @@
 					<input name="name" required type="text" id="name">
 				</div>
 				<div class="row">
-					<label for="name">Enter password:</label>
-					<input name="password" required type="text" id="name">
+					<label for="password">Enter password:</label>
+					<input name="password" required type="text" id="password">
 				</div>
 				<div class="row">
 					<label for="role">Enter role:</label>
@@ -80,7 +78,7 @@
 				</div>
 			</div>
 		</form>
-		<form th:action="@{/admin}" method="post">
+		<form class="two" th:action="@{/admin}" method="post">
 			<div class="column">
 				<div class="row">
 					<h3>Delete a user:</h3>
@@ -94,7 +92,7 @@
 				</div>
 			</div>
 		</form>
-		<form th:action="@{/admin}" th:object="${user}" method="post">
+		<form class="three" th:action="@{/admin}" th:object="${user}" method="post">
 			<div class="column">
 				<div class="row">
 					<h3>Change the user:</h3>
@@ -124,6 +122,7 @@
 	<button>
 		<a th:href="@{/logout}">Logout</a>
 	</button>
+	<script th:src="@{/js/admin.js}"></script>
 </body>
 
 </html>
